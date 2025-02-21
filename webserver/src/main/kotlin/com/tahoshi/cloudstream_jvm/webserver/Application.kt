@@ -8,6 +8,6 @@ import org.springframework.boot.runApplication
 open class Application
 
 fun main(args: Array<String>) {
-    Testing.loadTestCrossPlugin()
+    //Testing.loadTestCrossPlugin()
     runApplication<Application>(*args)
 }

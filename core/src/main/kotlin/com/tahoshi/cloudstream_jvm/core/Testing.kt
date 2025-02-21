@@ -10,6 +10,13 @@ object Testing {
     fun loadTestCrossPlugin() {
         val repoUrl = "https://raw.githubusercontent.com/keyiflerolsun/Kekik-cloudstream/refs/heads/master/repo.json"
         val pluginUrl = "https://github.com/JustRelaxable/Kekik-cloudstream/raw/refs/heads/cross-platform-test/InatBox.cs3"
+val pluginsUrl = "https://raw.githubusercontent.com/keyiflerolsun/Kekik-cloudstream/builds/plugins.json"
+
+        runBlocking {
+            val repository = RepositoryManager.getRepoPlugins(repoUrl)
+            println(repository)
+        }
+        /*
         runBlocking {
             RepositoryManager.addRepository(
                 RepositoryData(
@@ -23,5 +30,7 @@ object Testing {
             val inatboxApi = APIHolder.getApiFromNameNull("InatBox")
             println(inatboxApi)
         }
+
+         */
     }
 }

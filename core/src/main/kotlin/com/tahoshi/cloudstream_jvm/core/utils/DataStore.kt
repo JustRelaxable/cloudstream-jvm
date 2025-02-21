@@ -151,6 +151,7 @@ object DataStore {
             val prefs = getSharedPrefs()
             if (prefs.contains(path)) {
                 prefs.remove(path)
+                prefs.store(File(PREFERENCES_NAME).outputStream(),"")
             }
         } catch (e: Exception) {
             logError(e)
@@ -168,6 +169,7 @@ object DataStore {
     fun <T> setKey(path: String, value: T) {
         try {
             getSharedPrefs().setProperty(path, mapper.writeValueAsString(value))
+            getSharedPrefs().store(File(PREFERENCES_NAME).outputStream(),"")
         } catch (e: Exception) {
             logError(e)
         }
