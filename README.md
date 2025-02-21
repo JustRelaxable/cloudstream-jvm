@@ -10,5 +10,5 @@ Use Webserver for exposing Core functionality as well as proxy. Build your app o
 
 ## Contributing
 
-Contributions are always welcome! This project needs a lot of testing stuff. You can also checkout cloudstream-react project if you want to contribute front-end.
+Contributions are always welcome! This project needs a lot of testing stuff. You can also checkout [cloudstream-react](https://github.com/JustRelaxable/cloudstream-react) project if you want to contribute front-end.
 
