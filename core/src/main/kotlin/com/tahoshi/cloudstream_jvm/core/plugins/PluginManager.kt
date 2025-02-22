@@ -259,20 +259,8 @@ object PluginManager {
             }
         }
 
-        main {
-            // TODO:UIText implement edilene kadar şimdilik ingilizcelerini dönelim
-            /*
-            val uitext = txt(R.string.plugins_updated, updatedPlugins.size)
-            createNotification(uitext, updatedPlugins)
-             */
-
-            val message = "Updated ${updatedPlugins.size} plugins"
-            showToast(message, ToastDuration.LENGTH_LONG)
-
-            /*val navBadge = (activity as MainActivity).binding?.navRailView?.getOrCreateBadge(R.id.navigation_settings)
-            navBadge?.isVisible = true
-            navBadge?.number = 5*/
-        }
+        val message = "Updated ${updatedPlugins.size} plugins"
+        showToast(message, ToastDuration.LENGTH_LONG)
 
         // ioSafe {
         loadedOnlinePlugins = true
