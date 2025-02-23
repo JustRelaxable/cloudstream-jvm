@@ -40,7 +40,7 @@ targetSdk = "35"
 annotationJvm = "1.9.1"
 vlcj = "4.8.3"
 jetbrainsKotlinJvm = "1.9.24"
-cloudstream-library = "master-SNAPSHOT"
+cloudstream-library = "0b94f76627"
 spring-boot = "3.1.5"
 
 
