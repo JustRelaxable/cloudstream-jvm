@@ -20,7 +20,16 @@ class ProxyController {
 
     @GetMapping("/**")
     fun proxy(request: HttpServletRequest): ResponseEntity<ByteArray> {
-        val path = request.requestURI
+        val path = StringBuilder()
+            .append(request.scheme) // e.g., "http" or "https"
+            .append("://")
+            .append(request.serverName) // e.g., "example.com"
+            .append(":")
+            .append(request.serverPort) // e.g., 8080
+            .append(request.requestURI) // e.g., "/some/path"
+            .append(if (request.queryString != null) "?${request.queryString}" else "") // e.g., "?param=value"
+            .toString()
+        val headerList = request.headerNames.toList().filter { it.startsWith("c-") }
         var url = path.substringAfter("/proxy/")
 
         if (!url.startsWith("http://") && !url.startsWith("https://")) {
@@ -32,6 +41,14 @@ class ProxyController {
         try {
             HttpClients.createDefault().use { httpClient ->
                 val httpGet = HttpGet(url)
+                headerList.forEach {
+                    val realHeaderName = it.split("c-")[1]
+                    val realHeaderValue = request.getHeader(it)
+                    httpGet.setHeader(realHeaderName,realHeaderValue)
+                }
+                httpGet.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36")
+                val requestHeaders = httpGet.allHeaders
+                println("Request headers:${requestHeaders.toList()}")
                 val httpResponse: HttpResponse = httpClient.execute(httpGet)
 
                 val status = HttpStatus.valueOf(httpResponse.statusLine.statusCode)
